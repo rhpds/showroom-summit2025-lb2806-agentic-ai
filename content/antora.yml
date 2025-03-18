@@ -1,12 +1,12 @@
 name: modules
-title: Default Title
+title: Summit 2025 - LB2806 - Agentic AI
 version: master
 nav:
   - modules/ROOT/nav.adoc
 
 asciidoc:
   attributes:
-    lab_name: "I'm the lab_name var"
+    lab_name: "Test lab var from content/antora.yml"
     release-version: master
     page-pagination: true
     my_var: "foo"
