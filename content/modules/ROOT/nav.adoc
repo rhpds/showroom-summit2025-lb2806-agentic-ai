@@ -1,7 +1,10 @@
-* xref:module-01.adoc[1. RPM Native Container]
-** xref:module-01.adoc#repositories[Repositories]
-** xref:module-01.adoc#software[Software]
 
-* xref:module-02.adoc[2. GitHub Sourced Container]
-** xref:module-02.adoc#prerequisites[Install Prerequisites]
-** xref:module-02.adoc#container[Enable Container]
+* xref:01-Getting-Started.adoc[1. Getting Started]
+
+* xref:02-talk-with-your-llm.adoc[2. Talk with your LLM]
+
+* xref:03-tools-api-microservices.adoc[3. Tools, API and Microservices]
+
+* xref:04-talk-with-your-app.adoc[4. Talk with your App]
+
+* xref:05-take-to-production.adoc[5. Take to Production]
