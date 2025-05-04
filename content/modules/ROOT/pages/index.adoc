@@ -1,3 +1,50 @@
-= Overview Agentic AI
+= Introduction and Lab Overview
 
-Short intro
+
+== Lab Structure
+
+In the following modules will basically set up a simple and somewhat typical python based AI development environment for you to step through a series of Chip notebooks exploring basic genic, AI and some of the fundamental patterns.
+
+NOTE: Across the spectrum of AI and particularly generative AI the pace of change currently is extremely fast paced. 2025 has been termed the year of age to AI and this is one of the most dynamic areas. For example, in the first few months of 2025 not only did we see anthropic's model context protocol, which we will touch on briefly and Google's agent to agent protocol emerge. We also saw considerable development and innovation around Agentic AI framework and the underlying patterns.
+
+== Jupiter Notebooks
+
+Unlike traditional enterprise development and scripting our programming in an environment, where editors, such as them or ID such as visual studio code, jet, brains, etc., are the primary interface in the nondeterministic world of AI development. It is very common to complement these traditional tool chains with Jupiter notebooks which allow easy experimentation and observation - It's not for nothing that practitioners lower down the stock our traditionally referred to as data scientists and not data engineers.
+
+Will use a very simple subset of Jupiter notebooks to work through the labs allowing you to easily play with the code and rerun sections (cells) as many times as you please.
+
+.Jupiter Notebook Key Features
+[cols="1,3"]
+|===
+|Feature |Description
+
+|Cells |Code or markdown blocks that can be executed independently
+|Kernel |Runtime environment that executes the code in cells
+|Magic Commands |Special commands prefixed with % that provide additional functionality
+|Markdown Support |Rich text formatting for documentation and explanations
+|Interactive Widgets |UI components for creating interactive visualizations and controls
+|===
+
+
+
+<INSERT[source,language,attributes]
+----
+code
+----
+>
+
+
+== Resources
+
+
+
+If you've sat through the introductory slides that go along with this lab, you can safely skip the below and move on to Module 2, but may want to come back to this for reference as you work through perhaps look at the definition, etc.
+
+
+== 
+
+
+* What are Agents
+* Basic Architecture and Components
+* Long-running, headless, AI applications
+* When to use / not use

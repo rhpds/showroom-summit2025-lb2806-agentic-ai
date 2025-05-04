@@ -6,7 +6,6 @@ nav:
 
 asciidoc:
   attributes:
-    lab_name: "Test lab var from content/antora.yml"
     release-version: master
     page-pagination: true
     guid: my-guid
