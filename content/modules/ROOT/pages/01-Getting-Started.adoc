@@ -1,1 +1,131 @@
 = Getting Started
+
+
+In our firs lab, we will simply get set up and run through a couple of easy steps to ensure we have a good working environment, and this is an opportunity for you to become familiar with before moving on to module to our first real steps into gigantic AI.
+
+NOTE: Insert image of the environment ie RHEL 9.5, GPU, drivers Cuda etc
+
+
+
+
+== Starting the LLM (Large Langugae Model)
+
+On the right of your screen, switch away from the Jupypter Notebook tab and select the Terminals tab.
+
+
+Perform the following commands in the top terminal:
+
+. Check the status of your LLM runtime `ollama`
++
+[NOTE]: Ollama is actually not the LLM runtime itself but a popular wrapper for the LLM runtime llamacpp 
++
+
+[source,sh]
+----
+ollama ps
+----
++
+
+.Sample Output
+[source,texinfo]
+----
+NAME    ID    SIZE    PROCESSOR    UNTIL
+----
+
+. List the models availablle to you with `ollama ls` (Much like Podman/Docker ollama allows you to pull in new models via `ollama pull`)
++
+
+[source,sh]
+----
+ollama ls
+----
++
+.Sample Output
+[source,texinfo]
+----
+NAME                       ID              SIZE      MODIFIED   
+llama3-groq-tool-use:8b    36211dad2b15    4.7 GB    3 days ago  
+----
++
+
+[NOTE:] Different models have both different characterisitics, this model has been optimized for Tool Use, as we will see, an essential characterisitic for orchestration of Agentic AI. Lets, briefly, break down the name
+
+* `llama3` - This model is derived from Meta's Llama 3 family
+* `groq` - The model has been optimized by, and for, Groq's LPUs (Langugae Processing Unit) 
+** We will be running it on an Nvidia L40 GPU
+** Groq the LPU company is not to be mistaken with Grok the LLM company.
+* `tool-use` - it has been optimized to be capable of calling Agentic Tools
+* `8b` - The number of paramters in the models Neural Network (Weights and Biases)
+** We can see by it's size `~4.7GB` that this is a quantizied model that has been reduced in size
+
++
+
+. Launch the `llama3-groq-tool-use:8b` LLM via ollama `--keepalive -1m` keeps the model permenatetly running until you issue an `ollama stop llama3-groq-tool-use:8b`. 
+`
++
+
+[source,sh]
+----
+ollama run llama3-groq-tool-use:8b --keepalive -1m
+----
++
+.Sample Output
+[source,texinfo]
+----
+>>>
+----
+
+[TIP:] You can now interact directly with the LLM in the terminal and ask questions directly at the `>>>` prompt. During the lab however we will work exclusively with the model via the OpenAI API `ollma` is serving on TCP port 11434
+
+. Optional: In the bottom terminal `curl` the `ollama` endpoint
++
+
+[source,sh]
+----
+curl -s http://localhost:11434/api/generate -d '{
+  "model": "llama3-groq-tool-use:8b",
+  "prompt": "What is the capital of France?",
+  "stream": false
+}' | jq .response
+
+----
++
+
+.Sample Output
+[source,texinfo]
+----
+"The capital of France is Paris."
+----
+
+== Optianol - Graphically Monitor your GPU
+
+Move the focus to the bottom termninal
+
+. Start the GPU monitoring application `nvtop`. 
+
++
+[source,sh]
+----
+nvtop
+----
+
+Whilst this is not essential to the running of the lab it is not only fun to see, but also a simple and useful way to see that your application is actually running on, and utilizing the GPU.
+
+If you switch back to your upper terminal, you can ask it a question that will generate a long response anbd put the GPU to work
+
++
+[source,sh]
+----
+Write me 10 paragraphs on the main advantages of using OpenShift in production
+----
+
+Now we are ready to move onto the next model and create our first agent.
+
+
+
+
+
+
+Ollama is a lightweight, open-source runtime environment designed for running Large Language Models (LLMs) locally on your machine. It serves as a streamlined interface for downloading, running, and managing various open-source LLMs without the complexity of setting up the underlying infrastructure.
+
+Ollama simplifies the development workflow by providing a command-line interface and API that allows developers to quickly experiment with different models, fine-tune parameters, and integrate LLM capabilities into their applications with minimal overhead. Its focus on simplicity and performance makes it an ideal tool for developers who need local LLM capabilities during development before potentially moving to production environments.
