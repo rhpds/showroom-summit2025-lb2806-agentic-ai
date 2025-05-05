@@ -1,2 +1,12 @@
 = Talk with your LLM
 
+In this module we will verify That we can talk to our Alam and we will Run our first python applications.
+
+From this module onwards virtually, the entire content of the lab will be embedded in the Jupiter Lab notebooks And you will spend almost your entire time there.
+
+Take a few moments to explore the Jupyter interface and get comfortable with it.
+
+[TIP]
+====
+You can create an interface to suit your style of working and use the 
+==== 

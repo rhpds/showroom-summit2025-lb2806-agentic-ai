@@ -1,26 +1,59 @@
 = Getting Started
 
 
-In our firs lab, we will simply get set up and run through a couple of easy steps to ensure we have a good working environment, and this is an opportunity for you to become familiar with before moving on to module to our first real steps into gigantic AI.
+In our first module, we will simply get set up in our environment and and run through a couple of basic steps to ensure we have a good working environment ands running LLM (Large Langugae Model). This is an opportunity for you to become familiar with before moving on to module to our first real steps into Agentic AI.
 
-NOTE: Insert image of the environment ie RHEL 9.5, GPU, drivers Cuda etc
+Your entire lab will take place on a Red Hat Enterprise Linux (RHEL) 95 Virtual Machine with an Nvidia L4 GPU. References will be made to how this would all look in production where these types of applications would naturallly live and scale on Red Hat OpenShift.
+ 
+ As is common in AI development with Python you will work in a Python Virtual Environemnet (venv), in our case Python `3.12`
+ 
+.Your Environment
+[Attributes]
+|===
+|Header column 1 |Header column 2 
 
+|Virtual Environment
+|`~/venv`, Python 3.12 
 
+|Operating System
+|RHEL 9.5, Nvidia Drivers, CUDA
 
+|GPU
+|Nvida L4 (24GB)
 
-== Starting the LLM (Large Langugae Model)
+|LLM Runtime
+|Ollama/lamacpp (Production would use OpenShift AI/vLLM)
 
-On the right of your screen, switch away from the Jupypter Notebook tab and select the Terminals tab.
+|===
+
+[TIP]
+====
+At eny time you can see the utilization of your GPU via the `nvtop` command in any terminal. We will explore this briefly at the end of this module.
+====
+
+// [NOTE]
+// ====
+// The lab is designed to be run in a Jupyter Lab environment, which is a web-based interactive development environment for creating and sharing documents that contain live code, equations, visualizations, and narrative text. It is widely used in data science and machine learning for its flexibility and ease of use.
+// ====
+
+[WARNING]
+====
+*TODO* Insert image of the environment ie RHEL 9.5, GPU, drivers Cuda etc
+====
+
+== Starting the LLM (Large Language Model)
+
+On the right of your screen, in your lab user interface, switch away from the Jupypter Labs tab and select the Terminals tab.
 
 
 Perform the following commands in the top terminal:
 
 . Check the status of your LLM runtime `ollama`
 +
-[NOTE]: Ollama is actually not the LLM runtime itself but a popular wrapper for the LLM runtime llamacpp 
+NOTE: Ollama is actually not the LLM runtime itself but a popular wrapper for the LLM runtime llamacpp 
 +
 
-[source,sh]
+[source,sh,role=execute]
 ----
 ollama ps
 ----
@@ -35,7 +68,7 @@ NAME    ID    SIZE    PROCESSOR    UNTIL
 . List the models availablle to you with `ollama ls` (Much like Podman/Docker ollama allows you to pull in new models via `ollama pull`)
 +
 
-[source,sh]
+[source,sh,role=execute]
 ----
 ollama ls
 ----
@@ -48,7 +81,9 @@ llama3-groq-tool-use:8b    36211dad2b15    4.7 GB    3 days ago
 ----
 +
 
-[NOTE:] Different models have both different characterisitics, this model has been optimized for Tool Use, as we will see, an essential characterisitic for orchestration of Agentic AI. Lets, briefly, break down the name
+[NOTE]
+====
+ Different models have both different characterisitics, this model has been optimized for Tool Use, as we will see, an essential characterisitic for orchestration of Agentic AI. Lets, briefly, break down the name
 
 * `llama3` - This model is derived from Meta's Llama 3 family
 * `groq` - The model has been optimized by, and for, Groq's LPUs (Langugae Processing Unit) 
@@ -58,13 +93,25 @@ llama3-groq-tool-use:8b    36211dad2b15    4.7 GB    3 days ago
 * `8b` - The number of paramters in the models Neural Network (Weights and Biases)
 ** We can see by it's size `~4.7GB` that this is a quantizied model that has been reduced in size
 
+
+[Attributes]
+|===
+|Model |Parameters |Size |Supports Tool Calling
+
+|llama3-groq-tool-use
+|8b
+|`~4.7b`
+|Yes
+|===
+
+====
+
 +
 
 . Launch the `llama3-groq-tool-use:8b` LLM via ollama `--keepalive -1m` keeps the model permenatetly running until you issue an `ollama stop llama3-groq-tool-use:8b`. 
-`
 +
 
-[source,sh]
+[source,sh,role=execute]
 ----
 ollama run llama3-groq-tool-use:8b --keepalive -1m
 ----
@@ -75,12 +122,16 @@ ollama run llama3-groq-tool-use:8b --keepalive -1m
 >>>
 ----
 
-[TIP:] You can now interact directly with the LLM in the terminal and ask questions directly at the `>>>` prompt. During the lab however we will work exclusively with the model via the OpenAI API `ollma` is serving on TCP port 11434
+[TIP] 
+====
 
+You can now interact directly with the LLM in the terminal and ask questions directly at the `>>>` prompt. During the lab however we will work exclusively with the model via the OpenAI API `ollma` is serving on TCP port 11434. Meanwhile feel free to try a few "prompts".
+
+====
 . Optional: In the bottom terminal `curl` the `ollama` endpoint
 +
 
-[source,sh]
+[source,sh,role=execute]
 ----
 curl -s http://localhost:11434/api/generate -d '{
   "model": "llama3-groq-tool-use:8b",
@@ -97,35 +148,31 @@ curl -s http://localhost:11434/api/generate -d '{
 "The capital of France is Paris."
 ----
 
-== Optianol - Graphically Monitor your GPU
+== Optional - Graphically Monitor your GPU
 
 Move the focus to the bottom termninal
 
 . Start the GPU monitoring application `nvtop`. 
-
 +
-[source,sh]
+
+[source,sh,role=execute]
 ----
 nvtop
 ----
++
 
+[NOTE]
+====
 Whilst this is not essential to the running of the lab it is not only fun to see, but also a simple and useful way to see that your application is actually running on, and utilizing the GPU.
+====
++
 
 If you switch back to your upper terminal, you can ask it a question that will generate a long response anbd put the GPU to work
-
 +
-[source,sh]
+
+[source,sh,role=execute]
 ----
 Write me 10 paragraphs on the main advantages of using OpenShift in production
 ----
 
-Now we are ready to move onto the next model and create our first agent.
-
-
-
-
-
-
-Ollama is a lightweight, open-source runtime environment designed for running Large Language Models (LLMs) locally on your machine. It serves as a streamlined interface for downloading, running, and managing various open-source LLMs without the complexity of setting up the underlying infrastructure.
-
-Ollama simplifies the development workflow by providing a command-line interface and API that allows developers to quickly experiment with different models, fine-tune parameters, and integrate LLM capabilities into their applications with minimal overhead. Its focus on simplicity and performance makes it an ideal tool for developers who need local LLM capabilities during development before potentially moving to production environments.
+Now we are ready to move onto our next module and create our first agent.

@@ -1,1 +1,3 @@
 = Tools, APIs, and Microservices
+
+In Module 3 we will dive deeper into Agents and in particualer Tools and Tool Calling,  
