@@ -1,4 +1,4 @@
-= Prompting
+= 3. Prompting
 
 == Understanding Agentic AI Prompting, Chain of Thought (CoT) and Reason Act (ReAct) Prompting
 

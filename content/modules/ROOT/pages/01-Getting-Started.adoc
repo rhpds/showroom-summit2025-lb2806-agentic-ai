@@ -1,4 +1,4 @@
-= Module 1: Getting Started and Environment Setup
+= 1. Getting Started and Environment Setup
 
 Welcome to the first module! Our goal here is to get you set up in the lab environment and run a few basic checks. This will ensure everything is working correctly and familiarize you with the tools before we dive into creating our first AI Agent in the next module.
 
