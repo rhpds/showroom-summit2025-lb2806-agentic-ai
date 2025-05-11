@@ -1,4 +1,5 @@
 * xref:01-getting-started.adoc[1. Getting Started]
+* xref:01-01-getting-started.adoc[1-01. Getting Started again]
 * xref:02-talk-with-your-llm.adoc[2. Talk with your LLM]
 * xref:03-cot-react-prompting.adoc[3. Prompting: CoT and ReAct]
 * xref:04-tool-calling.adoc[4. Tool Calling]
