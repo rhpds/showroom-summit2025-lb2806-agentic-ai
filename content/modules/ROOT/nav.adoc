@@ -1,10 +1,14 @@
 
-* xref:01-Getting-Started.adoc[1. Getting Started]
+* xref:01-getting-started.adoc[1. Getting Started]
 
 * xref:02-talk-with-your-llm.adoc[2. Talk with your LLM]
 
-* xref:03-tools-api-microservices.adoc[3. Prompting: CoT and ReAct]
+* xref:03-cot-react-prompting.adoc[3. Prompting: CoT and ReAct]
 
-* xref:04-talk-with-your-app.adoc[4. Talk with your App]
+* xref:04-tool-calling.adoc[4. Tool Calling]
 
-* xref:05-take-to-production.adoc[5. Take to Production]
+* xref:05-agents.adoc[5. Agents]
+
+* xref:06-take-to-production.adoc[6. Take to Production]
+
+* xref:resources.adoc[Resources and References]

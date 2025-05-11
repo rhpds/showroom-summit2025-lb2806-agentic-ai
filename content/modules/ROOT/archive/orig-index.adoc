@@ -1,0 +1,37 @@
+= Overview Agentic AI
+
+Welcome to the Agentic AI lab, where we will explore Agentic AI against a backdrop of use cases partiucalry in the context of Cloud Operations.
+
+During the, short, introductory slides you have been introduced to the basic concepts of Agentic AI and the contents of the lab.
+
+== What you will learn
+
+* A basic introduction to AI development with Python 
+* An Introduction to Agentic AI
+* When, and when not to, consider an Agentic Approach
+** What is an AI Agent 
+** Key Attributes of Agentic AI
+*** Planning and Reasoning
+*** Memmory
+*** Tool, or Function, Calling
+** Trends in Agentic AI
+*** Model Context Protocol (MCP)
+*** A2A Protocol (A2A)
+* What an Agentic Application might look like in Production
+
+
+== Your Persona for the Labs
+
+You are focused on AI application development within a team responsible for both code and operational aspects of running in AI application. In this lab you will be in the development phrase, though throughout the lab we will reference the differences between a development environment running on a local machine and a production environment, which should typically be deployed to open shift whether on premise or external
+
+=== But What about Production
+
+In our final module we will outline Production and what this would look like.
+
+== Summary
+
+Virtually all the learning with the lab will be done througfh hands on interaction via the Jupyter Lab interface on the right. In the next module we'll get started setting up, and learning about, our environment.
+
+
+
+

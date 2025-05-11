@@ -1,37 +1,51 @@
-= Overview Agentic AI
+= Welcome to the Agentic AI Lab: Smarter Automation for Cloud Operations
 
-Welcome to the Agentic AI lab, where we will explore Agentic AI against a backdrop of use cases partiucalry in the context of Cloud Operations.
+Welcome! This lab is your hands-on introduction to *Agentic AI*. We'll explore how these intelligent systems can tackle real-world challenges, especially those you encounter in Cloud Operations.
 
-During the, short, introductory slides you have been introduced to the basic concepts of Agentic AI and the contents of the lab.
+If you've just come from the introductory slides, you'll have a basic idea of what Agentic AI is. Now, we're going to roll up our sleeves and see it in action. Our goal is to show you how AI can move beyond just analyzing data to actively helping you solve problems.
 
-== What you will learn
+== What You Will Learn in This Lab
 
-* A basic introduction to AI development with Python 
-* An Introduction to Agentic AI
-* When, and when not to, consider an Agentic Approach
-** What is an AI Agent 
-** Key Attributes of Agentic AI
-*** Planning and Reasoning
-*** Memmory
-*** Tool, or Function, Calling
-** Trends in Agentic AI
-*** Model Context Protocol (MCP)
-*** A2A Protocol (A2A)
-* What an Agentic Application might look like in Production
+By the end of this session, you'll have a practical understanding of:
 
+. *Getting Started with AI in Python:*
++
+We'll guide you through the basics of using the Python programming language for AI tasks. For those of you who are new to Python; we'll keep it simple and explain every step. Think of it as learning a new, powerful scripting tool.
+. *Understanding Agentic AI:*
++
+--
+**What is an AI Agent?** We'll define what an "AI Agent" is. Imagine a highly skilled automated assistant that can understand your goals, make plans, and use tools to achieve them – much like an experienced operator tackling a complex issue.
 
-== Your Persona for the Labs
+**Why Use an "Agentic" Approach?** We'll discuss scenarios where building an AI Agent is beneficial for operational tasks (e.g., automating troubleshooting, summarizing alerts) and when other approaches might be more suitable.
+--
+. *Key Capabilities of AI Agents:*
++
+--
+**Planning and Reasoning:** How an AI Agent can break down a problem (like diagnosing an error in a log file) into smaller, manageable steps. This is similar to how you might develop a troubleshooting plan.
 
-You are focused on AI application development within a team responsible for both code and operational aspects of running in AI application. In this lab you will be in the development phrase, though throughout the lab we will reference the differences between a development environment running on a local machine and a production environment, which should typically be deployed to open shift whether on premise or external
+**Memory:** How an AI Agent can "remember" previous interactions or information within a task to make better decisions, much like you recall steps already taken during an incident response.
 
-=== But What about Production
+**Using Tools (Tool/Function Calling):** This is a core concept. We'll show you how an AI Agent can be given "tools" – which are essentially specific commands or functions – to interact with its environment. For example, a tool could allow an agent to fetch system metrics, read a configuration file, or query a knowledge base, similar to how you use `kubectl`, `grep`, or `curl` from the command line.
+--
+. *(Briefly) Emerging Ideas in Agentic AI:*
++
 
-In our final module we will outline Production and what this would look like.
+We'll touch on some forward-looking concepts like standard ways for AI agents to communicate, such as *Model Context Protocol (MCP)* or *Agent-to-Agent (A2A) Protocol*. Think of these as potential future standards that could help different AI systems work together more effectively, much like networking protocols allow different computers to communicate. We won't dive deep, but it's good to know they're on the horizon.
+. *Agentic AI: From Your Laptop to Production:*
++
 
-== Summary
+We'll discuss what it takes to move an AI Agent application from a development environment (like the one we're using today) to a production system, highlighting considerations for deploying on platforms like OpenShift.
 
-Virtually all the learning with the lab will be done througfh hands on interaction via the Jupyter Lab interface on the right. In the next module we'll get started setting up, and learning about, our environment.
+== Your Role in This Lab: The AI-Focused Ops Developer
 
+For this lab, imagine you're part of a team that develops AI applications and is also responsible for running them. Today, you're in the *developer seat*, building and experimenting with AI Agents. Throughout the lab, we'll draw parallels between what you're doing on your local setup and how these concepts apply to a robust, scalable production environment – which, in the Red Hat world, typically means deploying on OpenShift, whether that's on-premise or in the cloud.
 
+== What About Running This in Production?
 
+While we'll be building and testing locally, we haven't forgotten about the end goal: production. In our final module, we'll specifically discuss what a production-ready Agentic AI application looks like and the key considerations for deploying and managing it effectively.
 
+== Let's Get Hands-On!
+
+The best way to learn is by doing. Almost all your learning in this lab will come from interacting directly with the *JupyterLab environment* you see on the right-hand side of your screen. JupyterLab is an interactive coding environment that lets us write and run Python code step-by-step and see the results immediately.
+
+In the next module, we'll start by setting up our lab environment and learning a bit more about the tools we'll be using. Let's begin!

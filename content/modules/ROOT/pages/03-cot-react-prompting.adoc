@@ -1,0 +1,34 @@
+= Prompting
+
+== Understanding Agentic AI Prompting, Chain of Thought (CoT) and Reason Act (ReAct) Prompting
+
+This module is designed to introduce you to the art and science of "prompting" Large Language Models (LLMs) – which is essentially how you give instructions and ask questions to an AI. Think of a prompt like a well-crafted command-line instruction or a detailed specification in a configuration file; the clarity and structure of your prompt dramatically influence the quality and relevance of the AI's response. As AI becomes more integrated into our daily operational and development workflows, understanding how to communicate effectively with these models is becoming a crucial skill. We'll explore two powerful techniques, Chain of Thought (CoT) and ReAct (Reason + Act), that can help you get more reliable, understandable, and useful results from AI, especially when tackling technical tasks.
+
+=== Chain of Thought (CoT)
+
+First, we'll delve into Chain of Thought (CoT) prompting. Imagine you're troubleshooting a complex issue; you wouldn't just jump to a conclusion. Instead, you'd mentally (or physically) list out the steps, check assumptions, and follow a logical sequence. CoT encourages the AI to do the same – to "think step-by-step" and show its work. This is incredibly valuable because it makes the AI's reasoning process transparent, much like running a script with set -x in bash or using verbose logging (-vvv) in Ansible to see every action and decision. This transparency is key for trusting and verifying AI outputs, especially in critical operational scenarios.
+
+=== Reason Act (ReAct) Prompting
+
+Next, we'll explore ReAct, which stands for "Reason and Act." This technique takes prompting a step further by enabling the AI to not only reason about a problem but also to propose and simulate "actions," such as using external tools or querying APIs, and then observe the outcomes of these actions to refine its approach. Think of this like an advanced automation script that can diagnose a problem (reason), decide to execute a specific command or API call (act), and then analyze the output (observe) to determine the next best step. ReAct empowers LLMs to interact with environments and data in a way that’s more aligned with how humans solve dynamic, multi-step problems, making it a powerful approach for complex operational tasks. We'll walk through practical Python examples, explaining each component from an operations perspective, so you can grasp these concepts even if Python isn't your primary language.
+
+This module serves as a practical guide to two influential prompting techniques for Large Language Models (LLMs): Chain of Thought (CoT) and ReAct (Reason + Act). As AI becomes increasingly integrated into technical workflows, understanding how to effectively communicate instructions to these models is crucial, especially for Operations (Ops) professionals who are newer to AI and Python. We'll explore how these prompting strategies can enhance the reliability and transparency of AI-driven tasks, from simple Q&A to more complex interactions with external systems and tools.
+
+Open your Notebook, `03-cot-react-prompting.adoc` for this section, which includes explanations and annotations for each exersice
+
+
+// V[NOTE]
+// ====
+// For the rest of this module work through the annotated Jupyter Notebook `03-`
+// ====
+
+
+// Tools, APIs, and Microservices
+
+// In Module 3 we will dive deeper into Agents and in particualer Tools and Tool Calling,  
+
+// and how to use them in your applications. We will also look at the OpenAI API and how to use it to call LLMs and other microservices.
+
+// == Tools and Tool Calling
+
+// In this module we will look at the following:
