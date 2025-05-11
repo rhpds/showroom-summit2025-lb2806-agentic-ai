@@ -1,0 +1,209 @@
+= 1. Getting Started and Environment Setup
+
+Welcome to the first module! Our goal here is to get you set up in the lab environment and run a few basic checks. This will ensure everything is working correctly and familiarize you with the tools before we dive into creating our first AI Agent in the next module.
+
+This entire lab takes place on a Red Hat Enterprise Linux (RHEL) 9.5 Virtual Machine (VM) equipped with an NVIDIA L4 Graphics Processing Unit (GPU). While we'll be working directly on RHEL for this lab, we'll also discuss how these AI applications would typically be deployed, managed, and scaled in a production environment using Red Hat OpenShift.
+
+[NOTE]
+====
+For this lab, you'll be taking on the persona of a developer. This means we'll be working with hardware and tools commonly used during the development phase. For instance, we'll use `ollama` as a runtime for our Large Language Model (LLM). An LLM is a type of artificial intelligence model that has been trained on vast amounts of text data to understand and generate human-like text.
+
+In a production setting, you would likely use a more robust, enterprise-grade runtime like `vLLM`, which is part of Red Hat OpenShift AI. We'll explore these distinctions in more detail in Module X.
+====
+
+As is common in Python-based AI development, you will work within a Python Virtual Environment (venv). For this lab, we are using Python version `3.12`.
+
+[NOTE]
+====
+Python developers, both in AI and other software development fields, frequently use virtual environments. A `venv` isolates a project's specific set of Python packages and dependencies (like the ones you might list in a `requirements.txt` file, often generated using `pip freeze > requirements.txt`). This isolation prevents conflicts between different projects and ensures reproducibility. These `requirements.txt` files often become key artifacts in the CI/CD (Continuous Integration/Continuous Deployment) pipeline, used to build the container images that run in production environments like Red Hat OpenShift.
+====
+
+.Your Lab Environment Overview
+[cols="1,2"]
+|===
+|Component |Details
+
+|Virtual Environment
+|`~/venv`, Python 3.12
+
+|Operating System
+|Red Hat Enterprise Linux (RHEL) 9.5, with NVIDIA drivers and CUDA toolkit installed. (CUDA is a parallel computing platform and programming model developed by NVIDIA for general computing on its own GPUs.)
+
+|GPU
+|NVIDIA L4 (24GB VRAM)
+
+|LLM Runtime (Development)
+|Ollama (which uses `lamacpp` internally).
+(In production, you would typically use Red Hat OpenShift AI with a runtime like `vLLM`.)
+|===
+
+[TIP]
+====
+You can monitor your GPU's utilization at any time by typing the `nvtop` command in a terminal. We'll try this out towards the end of this module. Your lab interface provides two terminals in the "Terminal Tab," but you can open additional terminals as needed directly within the JupyterLab interface.
+
+image::jupyter-ttys.png[Caption: Adding New Terminals in JupyterLab Interface]
+====
+
+// [NOTE]
+// ====
+// This lab is designed to be run within a JupyterLab environment. JupyterLab is a web-based interactive development environment (IDE) popular in data science and machine learning. It allows you to create and share documents that combine live code, equations, visualizations, and explanatory text, making it highly flexible for experimentation and learning.
+// ====
+
+[WARNING]
+====
+*TODO*: Insert an image here illustrating the lab environment, perhaps showing the RHEL desktop, a terminal window indicating GPU driver status (e.g., `nvidia-smi`), or the CUDA version.
+====
+
+== Starting the Large Language Model (LLM)
+
+To begin, let's interact with the LLM. On the right side of your screen, within the lab user interface, please switch from the "JupyterLab" tab to the "Terminals" tab.
+
+Perform the following commands in the *top* terminal window:
+
+.   **Check the status of your LLM runtime (`ollama`).**
++
+    `ollama` is a user-friendly tool that simplifies running LLMs locally. It acts as a wrapper for the underlying LLM runtime, which in this case is `llamacpp`.
++
+[source,sh,role=execute]
+----
+ollama ps
+----
++
+    This command shows any models currently loaded and running via `ollama`. If no models are running, the output will be minimal, similar to this:
++
+.Sample Output (if no models are running)
+[source,text]
+----
+NAME    ID    SIZE    PROCESSOR    UNTIL
+----
+
+.   **List the LLM models available locally.**
++
+    Similar to how container tools like Podman or Docker work with images, `ollama` allows you to download (or "pull") new LLM models using the `ollama pull <model_name>` command. Let's see what we have:
++
+[source,sh,role=execute]
+----
+ollama ls
+----
++
+.Sample Output
+[source,text]
+----
+NAME                  ID            SIZE    MODIFIED
+mistral-small:latest  8039dd90c113  14 GB   15 hours ago
+----
++
+[NOTE]
+====
+Different LLMs possess distinct characteristics and capabilities. The `mistral-small:latest` model has been selected for this lab partly because it's optimized for "Tool Use." As we'll discover, "Tool Use" (also known as function calling) is a crucial feature for AI Agents, allowing them to interact with external systems or data sources to perform tasks.
+
+Let's briefly look at the details of our chosen model:
+
+[cols="1,1,1,1"]
+|===
+|Model Name | Estimated Parameters |Approximate Size (Quantized) |Supports Tool Calling?
+
+|`mistral-small:latest`
+|~22 Billion
+|`~14GB`
+|Yes
+|===
+
+* **Parameters**: This refers to the number of learnable variables within the model's neural network. Generally, more parameters can lead to a more capable model, but also require more computational resources.
+* **Quantized**: The `~14GB` size indicates this is a "quantized" model. Quantization is a process that reduces the precision of the model's parameters (weights and biases), making the model smaller and faster to run, often with a minimal impact on performance for many tasks. This allows us to run a powerful model on relatively modest GPU hardware.
+====
++
+
+.   **Launch the `mistral-small:latest` LLM using `ollama`.**
++
+    The `--keepalive -1m` flag tells `ollama` to keep the model loaded in memory indefinitely until explicitly stopped (e.g., with `ollama stop mistral-small:latest`). Without this, `ollama` might unload the model after a period of inactivity (default is 5 minutes).
++
+[NOTE]
+====
+In a production environment on OpenShift, you'd utilize a production-grade LLM serving solution like `vLLM` (as found in OpenShift AI). For development, tools like `ollama` are excellent because they simplify the setup and allow for easy use of quantized (smaller) LLMs on readily available GPUs. Red Hat also offers RHEL AI for deploying and managing AI models directly on RHEL.
+====
++
+[source,sh,role=execute]
+----
+ollama run mistral-small:latest --keepalive -1m
+----
++
+    After running this command, you'll see a prompt appear, indicating the LLM is ready for direct interaction:
++
+.Sample Output
+[source,text]
+----
+>>>
+----
++
+
+[TIP]
+====
+You can now type questions or "prompts" directly to the LLM at the `>>>` prompt in this terminal. A "prompt" is the input you provide to an LLM to elicit a response.
+
+While direct interaction is possible here, throughout this lab, we will primarily interact with the model programmatically using its API. `ollama` conveniently exposes an OpenAI-compatible API endpoint, typically on TCP port `11434`.
+
+Feel free to ask the LLM a question now if you're curious! For example, try typing: `What are the benefits of using Linux?` and press Enter.
+====
+
+.   **(Optional) Interact with the LLM via its API using `curl`.**
++
+    This step demonstrates how applications can communicate with the LLM. We'll use the `curl` command (a common tool for transferring data with URLs) to send a request to the `ollama` API endpoint.
++
+    Open the *bottom* terminal (or a new terminal) for this command.
++
+[source,sh,role=execute]
+----
+curl -s http://localhost:11434/api/generate -d '{
+  "model": "mistral-small:latest",
+  "prompt": "What is the capital of France?",
+  "stream": false
+}' | jq .response
+----
++
+    Let's break down this command:
+
+    * `curl -s http://localhost:11434/api/generate`: Sends a request to the LLM's generation endpoint. The `-s` flag makes `curl` operate silently (no progress meter).
+    * `-d '{...}'`: Specifies the data to send in the request body, formatted as a JSON object.
+        * `"model": "mistral-small:latest"`: Tells `ollama` which LLM to use.
+        * `"prompt": "What is the capital of France?"`: The question we're asking the LLM.
+        * `"stream": false`: Instructs the API to send the entire response at once, rather than streaming it token by token.
+    * `| jq .response`: The output from `curl` (which is a JSON string) is "piped" (`|`) to the `jq` command. `jq` is a command-line JSON processor. `.response` tells `jq` to extract the value associated with the "response" key from the JSON.
++
+
+.Sample Output
+[source,text]
+----
+"The capital of France is Paris."
+----
+
+== Optional: Graphically Monitor Your GPU
+
+Let's see our GPU in action. If you haven't already, switch your focus to the *bottom* terminal.
+
+.   **Start the GPU monitoring application `nvtop`.**
++
+    `nvtop` (NVIDIA top) is a command-line task monitor for NVIDIA GPUs, similar to how `top` or `htop` monitor CPU and system processes.
++
+[source,sh,role=execute]
+----
+nvtop
+----
++
+    You should now see a display showing GPU utilization, memory usage, temperature, and other metrics.
++
+[NOTE]
+====
+While not essential for completing the lab exercises, observing `nvtop` can be insightful. It provides a simple and effective way to confirm that your AI tasks are indeed utilizing the GPU and to get a sense of the resources being consumed.
+====
++
+    To see the GPU usage change, switch back to your *upper* terminal where `ollama run ...` is active (you should see the `>>>` prompt). Type a prompt that will require the LLM to generate a significant amount of text. For example:
++
+[source,text]
+----
+Tell me a short story about a robot exploring Mars.
+----
++
+    As the LLM processes this and generates the story, you should see activity increase in the `nvtop` display in your other terminal.
+
+You are now set up and have confirmed the LLM is operational. We are ready to move on to the next module, where we'll begin building our first AI Agent!
