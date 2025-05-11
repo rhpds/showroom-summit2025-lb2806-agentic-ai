@@ -1,50 +1,37 @@
-= Introduction and Lab Overview
+= Overview Agentic AI
+
+Welcome to the Agentic AI lab, where we will explore Agentic AI against a backdrop of use cases partiucalry in the context of Cloud Operations.
+
+During the, short, introductory slides you have been introduced to the basic concepts of Agentic AI and the contents of the lab.
+
+== What you will learn
+
+* A basic introduction to AI development with Python 
+* An Introduction to Agentic AI
+* When, and when not to, consider an Agentic Approach
+** What is an AI Agent 
+** Key Attributes of Agentic AI
+*** Planning and Reasoning
+*** Memmory
+*** Tool, or Function, Calling
+** Trends in Agentic AI
+*** Model Context Protocol (MCP)
+*** A2A Protocol (A2A)
+* What an Agentic Application might look like in Production
 
 
-== Lab Structure
+== Your Persona for the Labs
 
-In the following modules will basically set up a simple and somewhat typical python based AI development environment for you to step through a series of Chip notebooks exploring basic genic, AI and some of the fundamental patterns.
+You are focused on AI application development within a team responsible for both code and operational aspects of running in AI application. In this lab you will be in the development phrase, though throughout the lab we will reference the differences between a development environment running on a local machine and a production environment, which should typically be deployed to open shift whether on premise or external
 
-NOTE: Across the spectrum of AI and particularly generative AI the pace of change currently is extremely fast paced. 2025 has been termed the year of age to AI and this is one of the most dynamic areas. For example, in the first few months of 2025 not only did we see anthropic's model context protocol, which we will touch on briefly and Google's agent to agent protocol emerge. We also saw considerable development and innovation around Agentic AI framework and the underlying patterns.
+=== But What about Production
 
-== Jupiter Notebooks
+In our final module we will outline Production and what this would look like.
 
-Unlike traditional enterprise development and scripting our programming in an environment, where editors, such as them or ID such as visual studio code, jet, brains, etc., are the primary interface in the nondeterministic world of AI development. It is very common to complement these traditional tool chains with Jupiter notebooks which allow easy experimentation and observation - It's not for nothing that practitioners lower down the stock our traditionally referred to as data scientists and not data engineers.
+== Summary
 
-Will use a very simple subset of Jupiter notebooks to work through the labs allowing you to easily play with the code and rerun sections (cells) as many times as you please.
-
-.Jupiter Notebook Key Features
-[cols="1,3"]
-|===
-|Feature |Description
-
-|Cells |Code or markdown blocks that can be executed independently
-|Kernel |Runtime environment that executes the code in cells
-|Magic Commands |Special commands prefixed with % that provide additional functionality
-|Markdown Support |Rich text formatting for documentation and explanations
-|Interactive Widgets |UI components for creating interactive visualizations and controls
-|===
-
-
-
-<INSERT[source,language,attributes]
-----
-code
-----
->
-
-
-== Resources
+Virtually all the learning with the lab will be done througfh hands on interaction via the Jupyter Lab interface on the right. In the next module we'll get started setting up, and learning about, our environment.
 
 
 
-If you've sat through the introductory slides that go along with this lab, you can safely skip the below and move on to Module 2, but may want to come back to this for reference as you work through perhaps look at the definition, etc.
 
-
-== 
-
-
-* What are Agents
-* Basic Architecture and Components
-* Long-running, headless, AI applications
-* When to use / not use

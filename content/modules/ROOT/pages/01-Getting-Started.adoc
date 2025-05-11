@@ -1,11 +1,22 @@
 = Getting Started
 
-
 In our first module, we will simply get set up in our environment and and run through a couple of basic steps to ensure we have a good working environment ands running LLM (Large Langugae Model). This is an opportunity for you to become familiar with before moving on to module to our first real steps into Agentic AI.
 
 Your entire lab will take place on a Red Hat Enterprise Linux (RHEL) 95 Virtual Machine with an Nvidia L4 GPU. References will be made to how this would all look in production where these types of applications would naturallly live and scale on Red Hat OpenShift.
- 
+
+[NOTE]
+====
+Remember your persona for this lab is as a developer and that is why you will work both on modest hardware and with "development like tooling" such as Large Langugae Model (LLM) runtime `ollama` versues a production grade runtime such as `vLLM` as used in Red Hat OpenShift AI
+
+We cover this in more depth in Module <x>
+==== 
+
  As is common in AI development with Python you will work in a Python Virtual Environemnet (venv), in our case Python `3.12`
+
+ [NOTE]
+ ====
+ Python developers both within the worlkd of AI, and outside, with non AI platforms frequently use venvs for development and isolate a working set of dependencies (for example `pip freeze > requirements.txt`) which can later become the CI/CD artifacts used to create the Container Images used in production environmnets, for example Openshift.
+ ====
  
 .Your Environment
 [Attributes]
@@ -28,7 +39,9 @@ Your entire lab will take place on a Red Hat Enterprise Linux (RHEL) 95 Virtual 
 
 [TIP]
 ====
-At eny time you can see the utilization of your GPU via the `nvtop` command in any terminal. We will explore this briefly at the end of this module.
+At any time you can see the utilization of your GPU via the `nvtop` command in any terminal. We will explore this briefly at the end of this module. 2 Terminals are provided in your Terminal Tab but you can also add as many terminals as you need in the Jupyter Lab interface.
+
+image::jupyter-ttys.png[Adding Terminals to Jupyter Labs]
 ====
 
 // [NOTE]
@@ -77,43 +90,50 @@ ollama ls
 [source,texinfo]
 ----
 NAME                       ID              SIZE      MODIFIED   
-llama3-groq-tool-use:8b    36211dad2b15    4.7 GB    3 days ago  
+mistral-small:latest    8039dd90c113    14 GB    15 hours ago    
 ----
 +
 
 [NOTE]
 ====
- Different models have both different characterisitics, this model has been optimized for Tool Use, as we will see, an essential characterisitic for orchestration of Agentic AI. Lets, briefly, break down the name
+ Different models have both different characterisitics, this model has been optimized for Tool Use, as we will see, an essential characterisitic for orchestration of Agentic AI. 
+ 
+// Lets, briefly, break down the name
 
-* `llama3` - This model is derived from Meta's Llama 3 family
-* `groq` - The model has been optimized by, and for, Groq's LPUs (Langugae Processing Unit) 
-** We will be running it on an Nvidia L40 GPU
-** Groq the LPU company is not to be mistaken with Grok the LLM company.
-* `tool-use` - it has been optimized to be capable of calling Agentic Tools
-* `8b` - The number of paramters in the models Neural Network (Weights and Biases)
-** We can see by it's size `~4.7GB` that this is a quantizied model that has been reduced in size
+// * `llama3` - This model is derived from Meta's Llama 3 family
+// * `groq` - The model has been optimized by, and for, Groq's LPUs (Langugae Processing Unit) 
+// ** We will be running it on an Nvidia L40 GPU
+// ** Groq the LPU company is not to be mistaken with Grok the LLM company.
+// * `tool-use` - it has been optimized to be capable of calling Agentic Tools
+// * `8b` - The number of paramters in the models Neural Network (Weights and Biases)
+// ** We can see by it's size `~4.7GB` that this is a quantizied model that has been reduced in size
 
 
 [Attributes]
 |===
 |Model |Parameters |Size |Supports Tool Calling
 
-|llama3-groq-tool-use
-|8b
-|`~4.7b`
+|mistral-small:latest
+|22B 
+|`~14Gb`
 |Yes
 |===
 
 ====
-
 +
 
-. Launch the `llama3-groq-tool-use:8b` LLM via ollama `--keepalive -1m` keeps the model permenatetly running until you issue an `ollama stop llama3-groq-tool-use:8b`. 
+. Launch the `mistral-small:latest` LLM via ollama `--keepalive -1m` keeps the model permenatetly running until you issue an `ollama stop mistral-small:latest`. 
++
+
+[NOTE]
+====
+In production you would typically run this on OpenShift using a Production Grade LLM Runtime such as `vLLM` as used in OpenShift AI and in a developemnt environment you can deploy vLLM to Red Hat Enterprise Linux (RHEL), or use RHEL AI. Here we are using ollama as it allows us to simply use quantized (smaller) LLMs in a way that is simple to configure and deploy on relatively modest GPUs.
+====
 +
 
 [source,sh,role=execute]
 ----
-ollama run llama3-groq-tool-use:8b --keepalive -1m
+ollama run mistral-small:latest --keepalive -1m
 ----
 +
 .Sample Output
@@ -134,7 +154,7 @@ You can now interact directly with the LLM in the terminal and ask questions dir
 [source,sh,role=execute]
 ----
 curl -s http://localhost:11434/api/generate -d '{
-  "model": "llama3-groq-tool-use:8b",
+  "model": "mistral-small:latest",
   "prompt": "What is the capital of France?",
   "stream": false
 }' | jq .response

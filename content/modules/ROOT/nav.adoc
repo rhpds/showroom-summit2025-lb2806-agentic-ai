@@ -3,7 +3,7 @@
 
 * xref:02-talk-with-your-llm.adoc[2. Talk with your LLM]
 
-* xref:03-tools-api-microservices.adoc[3. Tools, API and Microservices]
+* xref:03-tools-api-microservices.adoc[3. Prompting: CoT and ReAct]
 
 * xref:04-talk-with-your-app.adoc[4. Talk with your App]
 

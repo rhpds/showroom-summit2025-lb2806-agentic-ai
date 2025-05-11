@@ -1,0 +1,9 @@
+= Tool Calling
+
+In this upcoming module, we'll dive into "tool calling,", sometimes referred to as "Function Calling", a truly pivotal concept that unlocks much of the power and utility you see in modern Agentic AI. 
+
+Essentially, tool calling is how an AI agent can go beyond its internal knowledge and interact with the outside world—think of it like giving your AI the ability to run specific commands, scripts, or access external APIs, much like you might use command-line utilities in Linux or oc commands in OpenShift to get information or trigger actions. 
+
+This capability is a key enabler because it allows agents to fetch live data, interact with other systems, and perform a vastly wider range of tasks than they could with their pre-trained knowledge alone.
+
+Open the notebook `04-Tool-Calling.adoc`
