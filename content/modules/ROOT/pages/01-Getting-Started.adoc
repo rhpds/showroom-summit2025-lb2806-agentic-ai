@@ -135,6 +135,7 @@ ollama run mistral-small:latest --keepalive -1m
 ----
 >>>
 ----
++
 
 [TIP]
 ====
@@ -161,6 +162,7 @@ curl -s http://localhost:11434/api/generate -d '{
 ----
 +
     Let's break down this command:
+
     * `curl -s http://localhost:11434/api/generate`: Sends a request to the LLM's generation endpoint. The `-s` flag makes `curl` operate silently (no progress meter).
     * `-d '{...}'`: Specifies the data to send in the request body, formatted as a JSON object.
         * `"model": "mistral-small:latest"`: Tells `ollama` which LLM to use.
@@ -168,6 +170,7 @@ curl -s http://localhost:11434/api/generate -d '{
         * `"stream": false`: Instructs the API to send the entire response at once, rather than streaming it token by token.
     * `| jq .response`: The output from `curl` (which is a JSON string) is "piped" (`|`) to the `jq` command. `jq` is a command-line JSON processor. `.response` tells `jq` to extract the value associated with the "response" key from the JSON.
 +
+
 .Sample Output
 [source,text]
 ----
