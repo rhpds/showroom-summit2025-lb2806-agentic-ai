@@ -9,6 +9,7 @@ asciidoc:
     release-version: master
     page-pagination: true
     guid: my-guid
-    ssh_user: devops
+    ssh_username: dev
     ssh_password: devops
-    ssh_command: ssh someone@example.com
+    ssh_command: ssh dev@dev.example.com
+    targethost: dev.example.com
