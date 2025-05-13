@@ -167,7 +167,7 @@ Notice the `<think>...</think>` tags. This shows a simplified representation of 
 
 This "thinking" or reasoning step, while useful for complex tasks and tool calling, adds to the processing time. For very simple questions where such reasoning isn't strictly necessary, some models (or interfaces to them) might allow you to reduce this. For instance, if `qwen3:32b` supported a directive like `\no_think` (this is a hypothetical example for illustration, actual directives vary by model and interface), the interaction might look like:
 
-[source,sh]
+[source,sh,role=execute]
 ----
  \no_think What is the capital of France
 ----
@@ -185,8 +185,6 @@ This would likely be faster and consume fewer resources because the explicit rea
 // Okay, re-reading: `ollama run qwen3:32b` starts an interactive session. The subsequent `What is the capital of France` and `\no_think ...` are *inputs to that session*, not new shell commands. So `[source,sh,role=execute]` is technically incorrect for those inputs if we are strict about `sh` meaning a shell command. It should probably be more like `[source,text]` or just presented as user input. I will adjust that for better accuracy.
 // FINAL DECISION ON TIP: The original lab likely intends for the user to type those lines into the interactive `ollama run` session. Asciidoc's `source` block with `sh` might be misleading. I will change `[source,sh,role=execute]` for the *prompts to the model* to something more like `[prompt]` or just format it as user input, while keeping it for actual shell commands. Since `role=execute` implies the block itself is executable, which isn't true for the text you type *into* `ollama run`, I'll adjust.
 
-[TIP]
-====
 **Getting Familiar with the `qwen3:32b` Model's Reasoning**
 
 The `qwen3:32b` model we've just loaded has strong reasoning capabilities, which are beneficial for effective tool calling (i.e., figuring out *when* and *how* to use a tool). You can observe some of its internal "thinking" process when you interact with it directly.
