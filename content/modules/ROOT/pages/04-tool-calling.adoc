@@ -25,4 +25,144 @@ Think of it this way: you, as a Linux or OpenShift operator, use command-line ut
 
 This capability is what elevates an LLM to an "Agent" – a system that can perceive its (digital) environment, reason about it, and take actions to achieve specific goals.
 
-Now, let's see this in action. Please switch to the JupyterLab tab and open the notebook for this module: `04-tool-calling.ipynb`. We'll walk through practical examples of defining and using tools with our LLM.
+== Setup for Tool Calling Lab
+
+Different LLMs, speacially the smaller ones often below 70B paramters, can struggle with tool calling, whatever the agentic framework it is the LLM that typically calls the tools (or functions). We are now going to switch models and move to using `qwen3:32b` which does well at tool calling and reasoning - at some cost in latency.
+
+[NOTE]
+====
+Throughout this lab you have been using a relatively modest Nvidia L4 GPU with 24GB. In a production environment it is typical to use far more powerful GPUs which would deliver much higher perferomance than we will see today.
+====
+
+. Let's check which models are available with `ollama ls`
++
+
++
+[source,sh,role=execute]
+----
+ ollama ls
+----
++
+
+.Sample Output
+[source,texinfo]
+----
+NAME                    ID              SIZE     MODIFIED     
+qwen3:32b               e1c9f234c6eb    20 GB    27 hours ago    
+mistral-small:latest    8039dd90c113    14 GB    27 hours ago    
+----
+
+. Now see which model is running, with `ollama ps`, expect to see `mistral-small`
++
+
+[source,sh,role=execute]
+----
+ollama ps
+----
++
+
+.Sample Output
+[source,texinfo]
+----
+NAME                    ID              SIZE     PROCESSOR    UNTIL   
+mistral-small:latest    8039dd90c113    16 GB    100% GPU     Forever    
+----
+
+. Stop `mistral-small` so you can free up the GPU
++
+
+[source,sh,role=execute]
+----
+ollama stop mistral-small
+----
+
+. Verify that ollama is no longer serving a model
++
+
+[source,sh,role=execute]
+----
+ollama ps
+----
++
+
+.Sample Output
+[source,texinfo]
+----
+NAME    ID    SIZE    PROCESSOR    UNTIL
+----
+
+. Start your new, larger, `qwen3:32b` model, it will take a few moments to load itself into the GPUs memory.
++
+[source,sh,role=execute]
+----
+ollama run qwen3:32b
+----
++
+.Sample Output
+[source,texinfo]
+----
+>>> Send a message (/? for help)
+----
++
+
+[TIP]
+====
+You can test the qwen model directly, it is not only capable of Tool Calling but also Reasoning and "thinking".
+Try these 2 prompts asking the *same* question but the second with "thinking" turned off via the `\no_think prefix`. Note how the model marks its "thinking" between `<think>...</think>` tags.
+
+
+[source,sh,role=execute]
+----
+What is the capital of France
+----
+
+.Sample Output
+[source,texinfo]
+----
+<think>
+Okay, so the user is asking, "What is the capital of France?" Let me think about how to approach this. First, I need to recall the basic geographical 
+information about France. I remember that France is a country in Western Europe. The capital of a country is usually its largest city and the seat of 
+government. For France, I'm pretty sure the capital is Paris. But wait, let me double-check to be certain. Sometimes there can be confusion with 
+other major cities, like Lyon or Marseille, but those are not capitals. I think Paris has been the capital for a very long time, maybe since the 
+Middle Ages. The Eiffel Tower and the Louvre are in Paris, which are iconic landmarks. Also, the French government is based there, including the 
+president's residence at the Élysée Palace. I don't think there's any dispute about this, but just to be thorough, maybe I should consider if there 
+are any regions or territories where the capital might be different. However, the main capital of the French Republic is definitely Paris. Yeah, I'm 
+confident that's the answer.
+</think>
+
+The capital of France is **Paris**. 
+
+Paris is the largest city in France and serves as the political, economic, and cultural center of the country. It is home to iconic landmarks such as 
+the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. The French government, including the President's official residence (the Élysée 
+Palace), is also located there. 
+
+**Answer:** Paris.
+----
+
+Now ask the same question with the "\no_think" prefix:
+
+
+[source,sh,role=execute]
+----
+ \no_think What is the capital of France
+----
+
+.Sample Output
+[source,texinfo]
+----
+think>
+
+</think>
+
+The capital of France is **Paris**.
+----
+
+Much faster, and cheaper in time, GPU utilization, energy costs etc. So for simple Generative AI where thinking and reasoning are not required you can turn this off.
+
+====
+
+
+
+
+
+We are now ready to move on to Tool Calling, let's see this in action. Please switch to the JupyterLab tab and open the notebook for this module: `04-tool-calling.ipynb`. We'll walk through practical examples of defining and using tools with our LLM.
