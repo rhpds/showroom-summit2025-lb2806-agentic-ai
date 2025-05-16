@@ -65,7 +65,10 @@ This combination makes Notebooks ideal for learning new concepts and testing ide
 .Quick interactive introduction to using and customizing Jupyter Lab (recommended)
 ++++
 <iframe 
-  src="https://demo.arcade.software/eF1CtDuuD4hKWspBmiYR?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+  src="https://demo.arcade.software/eF1CtDuuD4hKWspBmiYR?
+  
+  embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+  embed&embed_mobile=inline&embed_desktop=inline&show_copy_link=true
   width="100%" 
   height="600px" 
   frameborder="0" 
@@ -218,7 +221,7 @@ Feel free to ask the LLM a question now if you're curious! For example, try typi
 [source,sh,role=execute]
 ----
 curl -s http://localhost:11434/api/generate -d '{
-  "model": "lama3.2:3b-instruct-fp16",
+  "model": "llama3.2:3b-instruct-fp16",
   "prompt": "What is the capital of France?",
   "stream": false
 }' | jq .response
