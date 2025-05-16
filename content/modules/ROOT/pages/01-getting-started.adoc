@@ -247,10 +247,11 @@ curl -s http://localhost:11434/api/generate -d '{
 
 Let's see our GPU in action. If you haven't already, switch your focus to the *bottom* terminal.
 
-.   **Start the GPU monitoring application `nvtop`.**
+. **Start the GPU monitoring application `nvtop`.**
 +
 
 `nvtop` (NVIDIA top) is a command-line task monitor for NVIDIA GPUs, similar to how `top` or `htop` monitor CPU and system processes.
++
 
 [source,sh,role=execute]
 ----
