@@ -231,7 +231,7 @@ curl -s http://localhost:11434/api/generate -d '{
 
     * `curl -s http://localhost:11434/api/generate`: Sends a request to the LLM's generation endpoint. The `-s` flag makes `curl` operate silently (no progress meter).
     * `-d '{...}'`: Specifies the data to send in the request body, formatted as a JSON object.
-        * `"model": "lama3.2:3b-instruct-fp16"`: Tells `ollama` which LLM to use.
+        * `"model": "llama3.2:3b-instruct-fp16"`: Tells `ollama` which LLM to use.
         * `"prompt": "What is the capital of France?"`: The question we're asking the LLM.
         * `"stream": false`: Instructs the API to send the entire response at once, rather than streaming it token by token.
     * `| jq .response`: The output from `curl` (which is a JSON string) is "piped" (`|`) to the `jq` command. `jq` is a command-line JSON processor. `.response` tells `jq` to extract the value associated with the "response" key from the JSON.
