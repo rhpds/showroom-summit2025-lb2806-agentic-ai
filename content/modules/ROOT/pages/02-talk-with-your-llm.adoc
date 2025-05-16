@@ -8,7 +8,15 @@ Take a few moments to familiarize yourself with the JupyterLab interface. Jupyte
 
 Please switch your focus to the "JupyterLab" tab, typically located to the right in your lab interface. You can adjust the width of this panel by dragging the divider if you need more space. Once in the JupyterLab tab, locate and open the notebook for this module: `02-talk-to-your-llm.ipynb`. All further instructions for this section will be found inside that notebook.
 
-[TIP]
-====
-The JupyterLab interface is quite flexible. It supports drag-and-drop, allowing you to rearrange tabs (like terminals and notebooks) to create a workspace that best suits your preferences. Feel free to experiment with the layout.
-====
+If you haven't already tried the interactive demo it can be a useful, short, introduction for new users.
+
+++++
+<iframe 
+  src="https://demo.arcade.software/eF1CtDuuD4hKWspBmiYR?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+  width="100%" 
+  height="600px" 
+  frameborder="0" 
+  allowfullscreen
+  muted>
+</iframe>
+++++
