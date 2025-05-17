@@ -124,7 +124,7 @@ llama3.2:3b-instruct-fp16    195a8c01d91e    6.4 GB    10 hours ago
 ----
 +
 
-Different LLMs possess distinct characteristics and capabilities. The `mistral-small:latest` model has been selected for this lab partly because it's optimized for "Tool Use." As we'll discover, "Tool Use" (also known as function calling) is a crucial feature for AI Agents, allowing them to interact with external systems or data sources to perform tasks.
+Different LLMs possess distinct characteristics and capabilities. The `llama3.2:3b-instruct-fp16` model has been selected for this lab partly because it's optimized for "Tool Use." As we'll discover, "Tool Use" (also known as function calling) is a crucial feature for AI Agents, allowing them to interact with external systems or data sources to perform tasks.
 +
 
 Let's briefly look at the details of our chosen model:
