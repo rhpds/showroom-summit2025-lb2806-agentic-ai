@@ -41,7 +41,7 @@ This is what the notebooks in this lab represent. They connect to the llama stac
 The llama stack client will connect to these to look for tools. An MCP server is a component of the link:https://modelcontextprotocol.io/introduction[Model Context Protocol (MCP)], which is a way for AI models to interact with external tools and data sources. It essentially acts as a translator, taking requests from an AI model and converting them into commands that a specific tool or application understands. And they can run on OCP clusters as containers. There could be multiple of these running on an OpenShift cluster.
 
 .Llama Stack Layout
-image::LlamaStackLayout.png[LLM Powered Autonomous Agents]
+image::llamastacklayout.png[LLM Powered Autonomous Agents]
 
 
 
