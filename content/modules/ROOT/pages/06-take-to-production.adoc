@@ -1,1 +1,61 @@
 = 6. Taking it to Production
+
+In the last lab we explored details about Agents. In this lab, we will talk about 2 things:
+
+* Look at yet another style of agentic architecture - a simple workflow pattern and how this may help in Cloud Automation.
+* Extend the agent from the last lab and making it more robust. We add a Verification Agent to the flow to make sure that the Debugger's output does not overlook or contradict.
+
+== Importance of Agentic Architecture
+It's important to emphasize that two different agent architectures can produce dramatically different results, even when using the same underlying LLM, accessing identical data, and utilizing the same set of tools. The specific way we structure an agent's reasoning process, tool-calling sequence, and information flow can significantly impact its accuracy and effectiveness. This highlights why thoughtful architecture design is not just a technical implementation detail but a crucial factor that can determine your agent's success or failure. When building agents, how you orchestrate the components is often as important as the components themselves.
+
+Get ready to explore the final module! Now, let's get started with the JupyterLab notebook: `06-talk-with-your-apps.ipynb`.
+
+
+== Practical Deployment Hints
+
+=== Agentic Frameworks
+There are many frameworks today that helps set up Agentic-AI : 
+
+* Llama Stack
+* LangGraph
+* PydanticAI
+* AutoGen
+* CrewAI 
+
+etc, just to name a few.
+
+Red Hat recommends using Llama Stack. Llama Stack defines and standardizes the set of core building blocks needed to bring generative AI applications to market. These building blocks are presented in the form of interoperable APIs with a broad set of Service Providers providing their implementations. See the Llama Stack link:https://github.com/meta-llama/llama-stack?tab=readme-ov-file#llama-stack[README] for more details.
+
+Llama Stack provides an open API standard that covers a broad range of enterprise use-cases, allowing customers to more easily build and deploy their Gen AI applications on RHEL AI and OpenShift AI. 
+
+=== Llama Stack ecosystem
+==== Model 
+That can be hosted anywhere that the server has access to. Llama Stack supports a wide range of  models or providers. This can be run on OCP clusters and could be Red Hat AI  Inference Server as an example. Or this could be hosted by the provider as well.
+
+==== Llama Stack server
+This can be run on OCP clusters as containers.
+Llama Stack client
+This is what the notebooks in this lab represent. They connect to the llama stack server. And they can run on OCP clusters as containers.
+
+==== MCP Server
+The llama stack client will connect to these to look for tools. An MCP server is a component of the link:https://modelcontextprotocol.io/introduction[Model Context Protocol (MCP)], which is a way for AI models to interact with external tools and data sources. It essentially acts as a translator, taking requests from an AI model and converting them into commands that a specific tool or application understands. And they can run on OCP clusters as containers. There could be multiple of these running on an OpenShift cluster.
+
+.Llama Stack Layout
+image::LlamaStackLayout.png[LLM Powered Autonomous Agents]
+
+
+
+    Note: there are also discussions about exposing agents as tools through MCP Server. In that case 'tools will not be dumb'! But a good starting point is to assume tools are just plain old code.
+
+=== Safety Shield
+
+Safety shields or guard rails should be an integral part of going to production. What it does is 
+Users input is vetted through the guard rail LLM. If it is not safe, it is not executed
+Likewise the final output of the Agent, before it is sent to the user , is vetted through the guard rail LLM. If it is not safe, it is not sent.
+This is shown in the link:https://llama-stack.readthedocs.io/en/latest/building_applications/agent_execution_loop.html[agent execution loop]. Llama Stack makes it very easy to configure guard rails.
+
+=== Multiple Agentic Applications
+
+Multiple Llama stack applications can be created by different teams and they can run in different containers. They can connect to the Llama stack server without any issues. But suppose in a larger Agent-AI application, agents from different teams need to collaborate. These agents run in different containers, but they need to collaborate. This is where future looking standards like link:https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/[Agent2Agent (A2A) Protocol] come into the picture. This is a area to watch.
+
+
