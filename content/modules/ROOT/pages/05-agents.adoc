@@ -1,3 +1,52 @@
-= 5. Agents
+= 5. AI Agents
 
+In this module, we're diving into *Agents*, a powerful way to automate complex tasks using AI, specifically working with Large Language Models (LLMs).
 
+== Key Characteristics of an Agent
+
+This schematic from the much cited Blog Article link:https://lilianweng.github.io/posts/2023-06-23-agent/[LLM Powered Autonomous Agents] does a good job of capturing the 4 essential properties of Agents.
+
+image::agents-overview.png[title='link:https://lilianweng.github.io/posts/2023-06-23-agent/[LLM Powered Autonomous Agents]', link=self, window=blank]
+
+// .Source: link:https://lilianweng.github.io/posts/2023-06-23-agent/[LLM Powered Autonomous Agents]
+// Key Agent Characteristics
+
+* Planning: Breaking down complex goals into manageable steps
+* Memory: Both short-term context and long-term knowledge storage
+* Tool integration: Connecting with existing operational systems
+* Reflection: Self-correction through evaluating past actions
+
+== What are AI Agents?
+
+Think of an AI Agent as an automated system that can:
+
+* Understand requests: Just like receiving a ticket or request in an Ops role.
+* Figure out the steps: Plan the actions needed to fulfill that request.
+* Perform actions: Use tools and systems to get the job done.
+* Keep track of things: Remember past actions and information to improve.
+
+In essence, an AI Agent is like having an intelligent assistant that can handle multi-step tasks autonomously, without needing constant, detailed instructions from you.
+
+== Analogy for Ops Professionals
+
+Imagine automating a server deployment process, but instead of scripting every single step, you give the AI Agent a high-level goal like "Deploy the latest version of the application to production." The agent then:
+
+* Checks: Reads configuration files, deployment logs, etc.
+* Plans: Determines the deployment steps, checks dependencies, etc.
+* Acts: Runs scripts, uses APIs, updates systems.
+* Verifies: Monitors the deployment, checks for errors.
+
+Just like a skilled Ops engineer, the agent uses its knowledge and available tools to complete the task.
+
+== Why are AI Agents Important for Ops?
+
+Automation of Complex Tasks: Handle tasks that are too complex or dynamic for traditional scripts.
+Reduced Manual Intervention: Allows Ops teams to focus on higher-level strategic work.
+Increased Reliability: Ensures consistent execution of critical processes through well-defined tools and logic.
+Transparency: Provides insights into how the AI Agent made decisions and took actions.
+
+== In this Lab:
+
+We'll start with basic examples and then explore how to use tools and frameworks like the OpenAI Agents SDK to build more sophisticated AI Agents. We'll walk through practical Python examples of defining AI agents and agentic architecture.
+
+Get ready to see how AI Agents work and could be applied to Ops workflows! Now, let's get started with the JupyterLab notebook: `05-agents.ipynb`.
